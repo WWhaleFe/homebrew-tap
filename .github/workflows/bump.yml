@@ -25,7 +25,7 @@ jobs:
         run: |
           git diff --quiet && { echo "already current"; exit 0; }
           mac=$(grep -m1 '^  version' Casks/flockswitch.rb | cut -d'"' -f2)
-          linux=$(grep -m1 '^  version' Formula/flockswitch.rb | cut -d'"' -f2)
+          linux=$(grep -m1 -o 'flockswitch-linux-x86_64-[0-9.]*[0-9]' Formula/flockswitch.rb | sed 's/.*-//')
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "flockswitch: macOS $mac, Linux $linux"

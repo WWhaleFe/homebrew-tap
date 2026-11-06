@@ -27,8 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Homebrew/actions/setup-homebrew@main
-      - run: brew audit --strict --online wwhalefe/tap/flockswitch
-      - run: brew install wwhalefe/tap/flockswitch
+      - run: brew audit --formula --strict --online wwhalefe/tap/flockswitch
+      - run: brew install --formula wwhalefe/tap/flockswitch
       - run: brew test wwhalefe/tap/flockswitch
       - run: test -f "$(brew --prefix)/share/applications/flockswitch.desktop"
-      - run: brew uninstall wwhalefe/tap/flockswitch
+      - run: brew uninstall --formula wwhalefe/tap/flockswitch
