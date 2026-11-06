@@ -1,0 +1,34 @@
+# Installs the cask on a Mac and the formula on Linux, the way users do.
+
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cask:
+    runs-on: macos-latest
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew style wwhalefe/tap
+      - run: brew audit --cask --strict --online wwhalefe/tap/flockswitch
+      - run: brew install --cask wwhalefe/tap/flockswitch
+      - run: test -d /Applications/flockswitch.app
+      - run: flockswitch help
+      - run: brew uninstall --cask --zap wwhalefe/tap/flockswitch
+
+  formula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew audit --strict --online wwhalefe/tap/flockswitch
+      - run: brew install wwhalefe/tap/flockswitch
+      - run: brew test wwhalefe/tap/flockswitch
+      - run: test -f "$(brew --prefix)/share/applications/flockswitch.desktop"
+      - run: brew uninstall wwhalefe/tap/flockswitch

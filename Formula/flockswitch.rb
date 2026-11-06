@@ -1,0 +1,59 @@
+class Flockswitch < Formula
+  desc "Move a Logitech mouse and keyboard to another computer with one button"
+  homepage "https://github.com/WWhaleFe/flockswitch-linux"
+  version "0.1.0"
+  license "MIT"
+
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
+  # The macOS version is the flockswitch cask.
+  depends_on :linux
+
+  on_linux do
+    on_intel do
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v#{version}/flockswitch-linux-x86_64-#{version}.tar.gz"
+      sha256 "e2228dbcfd9f101bbc5c8361662f90ba27a748719bf77cc3f0d7b29d940f2227"
+    end
+    on_arm do
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v#{version}/flockswitch-linux-aarch64-#{version}.tar.gz"
+      sha256 "790e05f4e4442af6363dfad5e32c581aa66530a568a106d82160c8d63500daf9"
+    end
+  end
+
+  def install
+    bin.install "flockswitch"
+    (share/"flockswitch").install "flockswitch.png", "70-flockswitch.rules"
+    # opt paths stay the same across upgrades.
+    inreplace "flockswitch.desktop" do |s|
+      s.gsub! "@BIN@", opt_bin/"flockswitch"
+      s.gsub! "@ICON@", opt_share/"flockswitch/flockswitch.png"
+    end
+    (share/"applications").install "flockswitch.desktop"
+  end
+
+  def caveats
+    <<~EOS
+      flockswitch needs a udev rule to open Logitech receivers and devices. Install it once:
+        sudo install -m 644 #{opt_share}/flockswitch/70-flockswitch.rules /etc/udev/rules.d/
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --subsystem-match=hidraw
+      then replug the receiver (or reconnect Bluetooth).
+
+      To add flockswitch to the app menu:
+        mkdir -p ~/.local/share/applications
+        ln -sf #{opt_share}/applications/flockswitch.desktop ~/.local/share/applications/
+
+      Before `brew uninstall flockswitch`, run `flockswitch uninstall` (it puts the buttons
+      back and removes start-at-login and settings), then remove the rule and menu entry:
+        sudo rm /etc/udev/rules.d/70-flockswitch.rules
+        rm ~/.local/share/applications/flockswitch.desktop
+    EOS
+  end
+
+  test do
+    assert_match "flockswitch switch <N>", shell_output("#{bin}/flockswitch help")
+  end
+end
