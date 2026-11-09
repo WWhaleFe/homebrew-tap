@@ -19,20 +19,16 @@ cask "flockswitch" do
   binary "#{appdir}/flockswitch.app/Contents/MacOS/flockswitch"
 
   # flockswitch is not notarized: without this macOS stops every new version until
-  # "Open Anyway" is chosen again. Then it is started, so the new version is the one running.
+  # "Open Anyway" is chosen again.
   postflight_steps do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/flockswitch.app"], must_succeed: false
-    run "/usr/bin/open", args: ["-g", "{{appdir}}/flockswitch.app"], must_succeed: false
   end
 
-  # Started at login it runs under its own launchd label, which `signal` below cannot
-  # find. On SIGTERM it puts the mouse buttons back the way they were and quits.
-  uninstall_preflight_steps do
-    terminate_process "flockswitch"
-  end
-
-  uninstall on_upgrade: :signal,
-            signal:     ["TERM", "io.github.wwhalefe.flockswitch"]
+  # Only when uninstalling. On an upgrade the running copy notices the new version,
+  # starts it and hands over. On SIGTERM it puts the mouse buttons back and quits; a copy
+  # started at login runs under its own launchd label, which `signal` cannot find.
+  uninstall launchctl: "flockswitch",
+            signal:    ["TERM", "io.github.wwhalefe.flockswitch"]
 
   zap trash: [
     "~/Library/Application Support/flockswitch",
@@ -42,5 +38,7 @@ cask "flockswitch" do
   caveats <<~EOS
     A new version shows up after `brew update`:
       brew update && brew upgrade --cask flockswitch
+
+    If flockswitch is not in the menu bar after an upgrade, open it from Applications.
   EOS
 end
