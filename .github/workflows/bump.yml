@@ -1,4 +1,4 @@
-# Follows new flockswitch releases: once a day, or by hand from the Actions tab.
+# Follows new flockswitch and UsageMeter releases: every 30 minutes, or by hand from the Actions tab.
 
 name: Bump
 
@@ -27,9 +27,10 @@ jobs:
           git diff --quiet && { echo "already current"; exit 0; }
           mac=$(grep -m1 '^  version' Casks/flockswitch.rb | cut -d'"' -f2)
           linux=$(grep -m1 -o 'flockswitch-linux-x86_64-[0-9.]*[0-9]' Formula/flockswitch.rb | sed 's/.*-//')
+          um=$(grep -m1 '^  version' Casks/usagemeter.rb | cut -d'"' -f2)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "flockswitch: macOS $mac, Linux $linux"
+          git commit -am "flockswitch: macOS $mac, Linux $linux; usagemeter $um"
           git push
           echo "pushed=true" >> "$GITHUB_OUTPUT"
       # A push made with GITHUB_TOKEN starts no other workflow, so test here.

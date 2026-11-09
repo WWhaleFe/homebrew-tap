@@ -1,5 +1,6 @@
 #!/bin/sh
-# Points the cask and the formula at the latest flockswitch releases: version and sha256.
+# Points the casks and the formula at the latest flockswitch and UsageMeter releases:
+# version and sha256.
 # Needs gh (GH_TOKEN) and sha256sum. Leaves the files unchanged when already current.
 set -eu
 cd "$(dirname "$0")/../.."
@@ -35,5 +36,13 @@ for arch in x86_64 aarch64; do
     sed -i "/flockswitch-linux-$arch-/{n;s/sha256 \".*\"/sha256 \"$sum\"/;}" Formula/flockswitch.rb
 done
 sed -i "/^      url /s/$(echo "$old" | sed 's/\./\\./g')/$v/g" Formula/flockswitch.rb
+
+# UsageMeter (macOS, universal): one zip per release.
+v=$(latest usagemeter)
+zip="UsageMeter-v$v.zip"
+gh release download "v$v" --repo WWhaleFe/usagemeter --pattern "$zip" --dir "$tmp"
+sum=$(sha256sum "$tmp/$zip" | cut -d' ' -f1)
+sed -i -e "s/^  version \".*\"/  version \"$v\"/" \
+       -e "s/^  sha256 \".*\"/  sha256 \"$sum\"/" Casks/usagemeter.rb
 
 git diff --stat

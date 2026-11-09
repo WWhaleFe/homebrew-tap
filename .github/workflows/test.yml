@@ -23,6 +23,16 @@ jobs:
       - run: flockswitch help
       - run: brew uninstall --cask --zap wwhalefe/tap/flockswitch
 
+  usagemeter:
+    runs-on: macos-latest
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew audit --cask --strict --online wwhalefe/tap/usagemeter
+      - run: brew install --cask wwhalefe/tap/usagemeter
+      - run: test -d /Applications/UsageMeter.app
+      - run: lipo -archs /Applications/UsageMeter.app/Contents/MacOS/UsageMeter
+      - run: brew uninstall --cask --zap wwhalefe/tap/usagemeter
+
   formula:
     runs-on: ubuntu-latest
     steps:
