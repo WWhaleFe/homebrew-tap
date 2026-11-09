@@ -1,6 +1,6 @@
 cask "flockswitch" do
-  version "0.7.1"
-  sha256 "8b807899ef7efc56be09edc6941a85fb938386dd5956f525eca93987fe42eb1b"
+  version "0.8.0"
+  sha256 "a24d2ebd94fe3fa3754a41c5bfb0c4b2ccea75e752eb7a197c9076a5160213ea"
 
   url "https://github.com/WWhaleFe/flockswitch-mac/releases/download/v#{version}/flockswitch-macos-arm64-#{version}.zip"
   name "flockswitch"
