@@ -20,20 +20,17 @@ cask "flockswitch" do
 
   # flockswitch is not notarized: without this macOS stops every new version until
   # "Open Anyway" is chosen again. Then it is started, so the new version is the one running.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/flockswitch.app"]
-    system_command "/usr/bin/open", args: ["-g", "#{appdir}/flockswitch.app"]
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/flockswitch.app"], must_succeed: false
+    run "/usr/bin/open", args: ["-g", "{{appdir}}/flockswitch.app"], must_succeed: false
   end
 
   # Started at login it runs under its own launchd label, which `signal` below cannot
-  # find. Asked this way it puts the mouse buttons back the way they were and quits.
-  uninstall_preflight do
-    program = "#{appdir}/flockswitch.app/Contents/MacOS/flockswitch"
-    system_command program, args: ["quit"] if File.executable?(program)
+  # find. On SIGTERM it puts the mouse buttons back the way they were and quits.
+  uninstall_preflight_steps do
+    terminate_process "flockswitch"
   end
 
-  # On SIGTERM flockswitch does the same, for a copy started from Finder.
   uninstall on_upgrade: :signal,
             signal:     ["TERM", "io.github.wwhalefe.flockswitch"]
 
