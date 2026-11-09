@@ -21,10 +21,13 @@ Then follow the steps `brew info flockswitch` prints: install the udev rule once
 ## Updates
 
 ```sh
-brew upgrade flockswitch
+# macOS
+brew update && brew upgrade --cask flockswitch
+# Linux
+brew update && brew upgrade flockswitch
 ```
 
-This tap follows new flockswitch releases on its own, checking once a day.
+On macOS `--cask` is required: without it Homebrew looks for the Linux formula of the same name and fails. This tap follows new flockswitch releases on its own, checking every 30 minutes.
 
 ---
 
@@ -48,4 +51,4 @@ brew install wwhalefe/tap/flockswitch
 
 설치한 다음 `brew info flockswitch`에 나오는 안내를 따르세요. udev 규칙을 sudo로 한 번 설치하고, 원하면 앱 메뉴에도 추가합니다.
 
-**업데이트**: `brew upgrade flockswitch`. 이 탭은 하루에 한 번 새 릴리스를 확인해 자동으로 따라갑니다.
+**업데이트**: macOS는 `brew update && brew upgrade --cask flockswitch`, Linux는 `brew update && brew upgrade flockswitch`. macOS에서 `--cask`를 빼면 같은 이름의 Linux용 formula를 찾다가 실패합니다. 이 탭은 30분마다 새 릴리스를 확인해 자동으로 따라갑니다.

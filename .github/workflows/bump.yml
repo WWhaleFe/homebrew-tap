@@ -4,7 +4,8 @@ name: Bump
 
 on:
   schedule:
-    - cron: "17 3 * * *"
+    # Often, so a release reaches `brew upgrade` soon after it is published.
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:

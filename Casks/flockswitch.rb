@@ -18,8 +18,22 @@ cask "flockswitch" do
   app "flockswitch/flockswitch.app"
   binary "#{appdir}/flockswitch.app/Contents/MacOS/flockswitch"
 
-  # On SIGTERM flockswitch puts the mouse buttons back the way they were and quits, so
-  # stop it before the app goes, on upgrades too.
+  # flockswitch is not notarized: without this macOS stops every new version until
+  # "Open Anyway" is chosen again. Then it is started, so the new version is the one running.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/flockswitch.app"]
+    system_command "/usr/bin/open", args: ["-g", "#{appdir}/flockswitch.app"]
+  end
+
+  # Started at login it runs under its own launchd label, which `signal` below cannot
+  # find. Asked this way it puts the mouse buttons back the way they were and quits.
+  uninstall_preflight do
+    program = "#{appdir}/flockswitch.app/Contents/MacOS/flockswitch"
+    system_command program, args: ["quit"] if File.executable?(program)
+  end
+
+  # On SIGTERM flockswitch does the same, for a copy started from Finder.
   uninstall on_upgrade: :signal,
             signal:     ["TERM", "io.github.wwhalefe.flockswitch"]
 
@@ -29,9 +43,7 @@ cask "flockswitch" do
   ]
 
   caveats <<~EOS
-    flockswitch is not notarized by Apple. The first time you open it, macOS blocks it:
-    open System Settings → Privacy & Security and choose "Open Anyway".
-
-    After an upgrade, open flockswitch again from Applications.
+    A new version shows up after `brew update`:
+      brew update && brew upgrade --cask flockswitch
   EOS
 end
