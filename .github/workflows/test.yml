@@ -11,13 +11,17 @@ on:
 permissions:
   contents: read
 
+# The cask audits skip `livecheck_version`: a push that lands before Bump has caught up
+# with a new release would otherwise fail on "Version differs from livecheck". Bump runs
+# every 30 minutes and owns version updates.
+
 jobs:
   cask:
     runs-on: macos-latest
     steps:
       - uses: Homebrew/actions/setup-homebrew@main
       - run: brew style wwhalefe/tap
-      - run: brew audit --cask --strict --online wwhalefe/tap/flockswitch
+      - run: brew audit --cask --strict --online --except=livecheck_version wwhalefe/tap/flockswitch
       - run: brew install --cask wwhalefe/tap/flockswitch
       - run: test -d /Applications/flockswitch.app
       - run: flockswitch help
@@ -27,7 +31,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: Homebrew/actions/setup-homebrew@main
-      - run: brew audit --cask --strict --online wwhalefe/tap/usagemeter
+      - run: brew audit --cask --strict --online --except=livecheck_version wwhalefe/tap/usagemeter
       - run: brew install --cask wwhalefe/tap/usagemeter
       - run: test -d /Applications/UsageMeter.app
       - run: lipo -archs /Applications/UsageMeter.app/Contents/MacOS/UsageMeter
