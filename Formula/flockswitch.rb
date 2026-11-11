@@ -45,7 +45,12 @@ class Flockswitch < Formula
         mkdir -p ~/.local/share/applications
         ln -sf #{opt_share}/applications/flockswitch.desktop ~/.local/share/applications/
 
-      Before `brew uninstall flockswitch`, run `flockswitch uninstall` (it puts the buttons
+      To upgrade (the macOS cask has the same name, so name the formula):
+        brew update && brew upgrade --formula wwhalefe/tap/flockswitch
+      On Homebrew 6+, if it says the tap is untrusted, run once:
+        brew trust --formula wwhalefe/tap/flockswitch
+
+      Before `brew uninstall --formula wwhalefe/tap/flockswitch`, run `flockswitch uninstall` (it puts the buttons
       back and removes start-at-login and settings), then remove the rule and menu entry:
         sudo rm /etc/udev/rules.d/70-flockswitch.rules
         rm ~/.local/share/applications/flockswitch.desktop

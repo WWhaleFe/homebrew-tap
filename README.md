@@ -13,10 +13,10 @@ flockswitch is not notarized by Apple, so the first time you open it macOS block
 ## Linux (x86_64, arm64)
 
 ```sh
-brew install wwhalefe/tap/flockswitch
+brew install --formula wwhalefe/tap/flockswitch
 ```
 
-Then follow the steps `brew info flockswitch` prints: install the udev rule once (with sudo), and optionally add flockswitch to the app menu.
+Then follow the steps `brew info --formula wwhalefe/tap/flockswitch` prints: install the udev rule once (with sudo), and optionally add flockswitch to the app menu.
 
 ## Updates
 
@@ -24,10 +24,12 @@ Then follow the steps `brew info flockswitch` prints: install the udev rule once
 # macOS
 brew update && brew upgrade --cask flockswitch
 # Linux
-brew update && brew upgrade flockswitch
+brew update && brew upgrade --formula wwhalefe/tap/flockswitch
 ```
 
-On macOS `--cask` is required: without it Homebrew looks for the Linux formula of the same name and fails. This tap follows new flockswitch releases on its own, checking every 30 minutes.
+The macOS cask and the Linux formula share the name `flockswitch`, so always say which one: `--cask` on macOS, `--formula` on Linux. Without it Homebrew loads both and stops at the one for the other system.
+
+Homebrew 6 and newer only load taps you trust. Installing with the full name (`wwhalefe/tap/flockswitch`) trusts it; if an upgrade says `Refusing to load … from untrusted tap wwhalefe/tap`, run once `brew trust --cask wwhalefe/tap/flockswitch` (macOS) or `brew trust --formula wwhalefe/tap/flockswitch` (Linux). This tap follows new flockswitch releases on its own, checking every 30 minutes.
 
 ## UsageMeter (macOS)
 
@@ -57,12 +59,14 @@ Apple 공증을 받지 않은 앱이라서, 처음 열 때 macOS가 실행을 �
 **Linux (x86_64, arm64)**
 
 ```sh
-brew install wwhalefe/tap/flockswitch
+brew install --formula wwhalefe/tap/flockswitch
 ```
 
-설치한 다음 `brew info flockswitch`에 나오는 안내를 따르세요. udev 규칙을 sudo로 한 번 설치하고, 원하면 앱 메뉴에도 추가합니다.
+설치한 다음 `brew info --formula wwhalefe/tap/flockswitch`에 나오는 안내를 따르세요. udev 규칙을 sudo로 한 번 설치하고, 원하면 앱 메뉴에도 추가합니다.
 
-**업데이트**: macOS는 `brew update && brew upgrade --cask flockswitch`, Linux는 `brew update && brew upgrade flockswitch`. macOS에서 `--cask`를 빼면 같은 이름의 Linux용 formula를 찾다가 실패합니다. 이 탭은 30분마다 새 릴리스를 확인해 자동으로 따라갑니다.
+**업데이트**: macOS는 `brew update && brew upgrade --cask flockswitch`, Linux는 `brew update && brew upgrade --formula wwhalefe/tap/flockswitch`. macOS용 cask와 Linux용 formula가 같은 이름이라 macOS는 `--cask`, Linux는 `--formula`를 꼭 붙이세요. 빼면 Homebrew가 둘 다 읽다가 다른 시스템용에서 멈춥니다.
+
+Homebrew 6 이상은 신뢰한 탭만 읽습니다. 전체 이름(`wwhalefe/tap/flockswitch`)으로 설치하면 자동으로 신뢰되며, 업데이트할 때 `Refusing to load … from untrusted tap wwhalefe/tap` 오류가 나면 한 번만 `brew trust --cask wwhalefe/tap/flockswitch`(macOS) 또는 `brew trust --formula wwhalefe/tap/flockswitch`(Linux)를 실행하세요. 이 탭은 30분마다 새 릴리스를 확인해 자동으로 따라갑니다.
 
 **UsageMeter (macOS)**: 메뉴바와 화면 가장자리에 Claude·Codex·Gemini 잔여 사용량을 보여줍니다.
 
