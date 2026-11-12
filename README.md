@@ -13,10 +13,10 @@ flockswitch is not notarized by Apple, so the first time you open it macOS block
 ## Linux (x86_64, arm64)
 
 ```sh
-brew install --formula wwhalefe/tap/flockswitch
+brew install --formula wwhalefe/tap/flockswitch && flockswitch setup
 ```
 
-Then follow the steps `brew info --formula wwhalefe/tap/flockswitch` prints: install the udev rule once (with sudo), and optionally add flockswitch to the app menu.
+`flockswitch setup` lists what this desktop still needs (the udev rule, the app menu entry and anything else), asks once and needs your password once. Without Homebrew: `curl -fsSL https://github.com/WWhaleFe/flockswitch-linux/releases/latest/download/get.sh | sh`.
 
 ## Updates
 
@@ -59,10 +59,10 @@ Apple 공증을 받지 않은 앱이라서, 처음 열 때 macOS가 실행을 �
 **Linux (x86_64, arm64)**
 
 ```sh
-brew install --formula wwhalefe/tap/flockswitch
+brew install --formula wwhalefe/tap/flockswitch && flockswitch setup
 ```
 
-설치한 다음 `brew info --formula wwhalefe/tap/flockswitch`에 나오는 안내를 따르세요. udev 규칙을 sudo로 한 번 설치하고, 원하면 앱 메뉴에도 추가합니다.
+`flockswitch setup`이 이 데스크톱에 더 필요한 것(udev 규칙, 앱 메뉴 항목 등)을 보여 주고 한 번 묻고, 비밀번호도 한 번만 묻습니다. Homebrew 없이: `curl -fsSL https://github.com/WWhaleFe/flockswitch-linux/releases/latest/download/get.sh | sh`
 
 **업데이트**: macOS는 `brew update && brew upgrade --cask flockswitch`, Linux는 `brew update && brew upgrade --formula wwhalefe/tap/flockswitch`. macOS용 cask와 Linux용 formula가 같은 이름이라 macOS는 `--cask`, Linux는 `--formula`를 꼭 붙이세요. 빼면 Homebrew가 둘 다 읽다가 다른 시스템용에서 멈춥니다.
 

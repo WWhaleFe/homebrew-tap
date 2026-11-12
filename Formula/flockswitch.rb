@@ -35,15 +35,12 @@ class Flockswitch < Formula
 
   def caveats
     <<~EOS
-      flockswitch needs a udev rule to open Logitech receivers and devices. Install it once:
-        sudo install -m 644 #{opt_share}/flockswitch/70-flockswitch.rules /etc/udev/rules.d/
-        sudo udevadm control --reload-rules
-        sudo udevadm trigger --subsystem-match=hidraw
-      then replug the receiver (or reconnect Bluetooth).
-
-      To add flockswitch to the app menu:
-        mkdir -p ~/.local/share/applications
-        ln -sf #{opt_share}/applications/flockswitch.desktop ~/.local/share/applications/
+      Finish the setup once: the udev rule that lets flockswitch open Logitech receivers and
+      devices, the app menu entry, and whatever else this desktop still needs. It lists
+      everything, asks once, and needs your password once:
+        flockswitch setup
+      Then start flockswitch from the app menu (replug the receiver if it was plugged in).
+      `flockswitch setup --dry-run` prints the commands if you prefer to run them yourself.
 
       To upgrade (the macOS cask has the same name, so name the formula):
         brew update && brew upgrade --formula wwhalefe/tap/flockswitch
