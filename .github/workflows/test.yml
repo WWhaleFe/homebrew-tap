@@ -37,6 +37,16 @@ jobs:
       - run: lipo -archs /Applications/UsageMeter.app/Contents/MacOS/UsageMeter
       - run: brew uninstall --cask --zap wwhalefe/tap/usagemeter
 
+  mdemo:
+    runs-on: macos-latest
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew audit --cask --strict --online --except=livecheck_version wwhalefe/tap/mdemo
+      - run: brew install --cask wwhalefe/tap/mdemo
+      - run: test -d /Applications/MDemo.app
+      - run: lipo -archs /Applications/MDemo.app/Contents/MacOS/MDemo
+      - run: brew uninstall --cask --zap wwhalefe/tap/mdemo
+
   formula:
     runs-on: ubuntu-latest
     steps:

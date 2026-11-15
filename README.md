@@ -42,6 +42,17 @@ brew update && brew upgrade --cask usagemeter   # update
 
 If Homebrew refuses with an `untrusted tap` error, run `brew trust --cask wwhalefe/tap/usagemeter` first. The running app restarts itself after an update.
 
+## MDemo (macOS)
+
+[MDemo](https://github.com/WWhaleFe/MDemo) is a Markdown sticky-note app in the menu bar that copies and pastes with Notion formatting.
+
+```sh
+brew install --cask wwhalefe/tap/mdemo
+brew update && brew upgrade --cask mdemo   # update
+```
+
+If Homebrew refuses with an `untrusted tap` error, run `brew trust --cask wwhalefe/tap/mdemo` first. Quit and reopen MDemo after an update.
+
 ---
 
 ## 한국어
@@ -76,3 +87,12 @@ brew update && brew upgrade --cask usagemeter   # 업데이트
 ```
 
 `untrusted tap` 오류가 나면 먼저 `brew trust --cask wwhalefe/tap/usagemeter`를 실행하세요. 업데이트하면 실행 중인 앱이 스스로 다시 시작합니다.
+
+**MDemo (macOS)**: 노션과 서식째 복사 · 붙여넣기가 되는 메뉴바 마크다운 스티키 메모입니다.
+
+```sh
+brew install --cask wwhalefe/tap/mdemo
+brew update && brew upgrade --cask mdemo   # 업데이트
+```
+
+`untrusted tap` 오류가 나면 먼저 `brew trust --cask wwhalefe/tap/mdemo`를 실행하세요. 업데이트한 뒤에는 MDemo를 종료하고 다시 열어 주세요.
