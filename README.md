@@ -53,6 +53,17 @@ brew update && brew upgrade --cask mdemo   # update
 
 If Homebrew refuses with an `untrusted tap` error, run `brew trust --cask wwhalefe/tap/mdemo` first. Quit and reopen MDemo after an update.
 
+## Podlift (macOS, Apple silicon)
+
+[Podlift](https://github.com/WWhaleFe/podlift) manages music on an iPod Classic without iTunes: copy songs off the iPod with their real names, put songs and album art on it, remove duplicates and tidy your music folder.
+
+```sh
+brew install --cask wwhalefe/tap/podlift
+brew update && brew upgrade --cask podlift   # update
+```
+
+If Homebrew refuses with an `untrusted tap` error, run `brew trust --cask wwhalefe/tap/podlift` first.
+
 ---
 
 ## 한국어
@@ -96,3 +107,12 @@ brew update && brew upgrade --cask mdemo   # 업데이트
 ```
 
 `untrusted tap` 오류가 나면 먼저 `brew trust --cask wwhalefe/tap/mdemo`를 실행하세요. 업데이트한 뒤에는 MDemo를 종료하고 다시 열어 주세요.
+
+**Podlift (macOS, Apple silicon)**: iTunes 없이 아이팟 클래식 음악을 관리합니다. 아이팟 곡을 원래 이름으로 가져오고, 곡과 앨범 아트를 넣고, 중복을 정리하고, 음악 폴더를 정리합니다.
+
+```sh
+brew install --cask wwhalefe/tap/podlift
+brew update && brew upgrade --cask podlift   # 업데이트
+```
+
+`untrusted tap` 오류가 나면 먼저 `brew trust --cask wwhalefe/tap/podlift`를 실행하세요.

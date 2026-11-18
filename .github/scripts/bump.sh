@@ -1,5 +1,5 @@
 #!/bin/sh
-# Points the casks and the formula at the latest flockswitch, UsageMeter and MDemo releases:
+# Points the casks and the formula at the latest flockswitch, UsageMeter, MDemo and Podlift releases:
 # version and sha256.
 # Needs gh (GH_TOKEN) and sha256sum. Leaves the files unchanged when already current.
 set -eu
@@ -52,5 +52,13 @@ gh release download "v$v" --repo WWhaleFe/MDemo --pattern "$zip" --dir "$tmp"
 sum=$(sha256sum "$tmp/$zip" | cut -d' ' -f1)
 sed -i -e "s/^  version \".*\"/  version \"$v\"/" \
        -e "s/^  sha256 \".*\"/  sha256 \"$sum\"/" Casks/mdemo.rb
+
+# Podlift (macOS, arm64): one zip per release.
+v=$(latest podlift)
+zip="podlift-macos-arm64-$v.zip"
+gh release download "v$v" --repo WWhaleFe/podlift --pattern "$zip" --dir "$tmp"
+sum=$(sha256sum "$tmp/$zip" | cut -d' ' -f1)
+sed -i -e "s/^  version \".*\"/  version \"$v\"/" \
+       -e "s/^  sha256 \".*\"/  sha256 \"$sum\"/" Casks/podlift.rb
 
 git diff --stat

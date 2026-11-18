@@ -47,6 +47,16 @@ jobs:
       - run: lipo -archs /Applications/MDemo.app/Contents/MacOS/MDemo
       - run: brew uninstall --cask --zap wwhalefe/tap/mdemo
 
+  podlift:
+    runs-on: macos-latest
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew audit --cask --strict --online --except=livecheck_version wwhalefe/tap/podlift
+      - run: brew install --cask wwhalefe/tap/podlift
+      - run: test -d /Applications/Podlift.app
+      - run: lipo -archs /Applications/Podlift.app/Contents/MacOS/podlift
+      - run: brew uninstall --cask --zap wwhalefe/tap/podlift
+
   formula:
     runs-on: ubuntu-latest
     steps:
