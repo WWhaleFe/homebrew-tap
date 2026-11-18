@@ -1,6 +1,6 @@
 cask "podlift" do
-  version "0.1.0"
-  sha256 "bf1878a498a47bce94c995621030bc98a5f0b1855dfe2a177a7376802190aeba"
+  version "0.1.1"
+  sha256 "d9d4a994f377109474331c8f9b17b0ecd9f888d267f8fa0023d5bdad5e5f4f34"
 
   url "https://github.com/WWhaleFe/podlift/releases/download/v#{version}/podlift-macos-arm64-#{version}.zip"
   name "Podlift"
