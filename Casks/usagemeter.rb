@@ -34,6 +34,7 @@ cask "usagemeter" do
     "~/Library/Caches/UsageMeter",
     "~/Library/HTTPStorages/com.usagemeter.app*",
     "~/Library/HTTPStorages/UsageMeter*",
+    "~/Library/LaunchAgents/UsageMeter.plist",
     "~/Library/Preferences/com.usagemeter.app.plist",
     "~/Library/Preferences/UsageMeter.plist",
     "~/Library/WebKit/com.usagemeter.app",
