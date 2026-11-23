@@ -1,6 +1,6 @@
 cask "usagemeter" do
-  version "2.2.0"
-  sha256 "d15f2eac5d9218e723415b78e2762d1baa5c529627012447c25dda81d2311b51"
+  version "2.2.1"
+  sha256 "a285765468fcfa7c7d940d40d8d545a8a09ede1e12c332758af899131bc080d0"
 
   url "https://github.com/WWhaleFe/usagemeter/releases/download/v#{version}/UsageMeter-v#{version}.zip"
   name "UsageMeter"
