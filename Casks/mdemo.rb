@@ -1,10 +1,10 @@
 cask "mdemo" do
-  version "0.12.0"
-  sha256 "481b589aada13d398cacf5db2b9b0a1b95091f5e09c6e4da40865e810bdbe592"
+  version "0.13.0"
+  sha256 "d9c6c6c2c7fcb5462b86ffd9cecd2cf6f565a4e53205ad918caf6af065fd414e"
 
   url "https://github.com/WWhaleFe/MDemo/releases/download/v#{version}/MDemo-v#{version}.zip"
   name "MDemo"
-  desc "Markdown sticky notes that copy and paste with Notion formatting"
+  desc "Markdown sticky notes with Google Drive sync and Notion export"
   homepage "https://github.com/WWhaleFe/MDemo"
 
   livecheck do
@@ -27,7 +27,7 @@ cask "mdemo" do
   # Quitting through the app saves open memos first; a signal would skip that.
   uninstall quit: "com.wwhalefe.MDemo"
 
-  # Memos live in Application Support/MDemo/Data. The iCloud Drive copy is left alone.
+  # Memos live in Application Support/MDemo/Data. Google Drive and old iCloud Drive copies are left alone.
   zap trash: [
     "~/Library/Application Support/MDemo",
     "~/Library/Caches/com.wwhalefe.MDemo",
