@@ -1,0 +1,14 @@
+#!/bin/sh
+# 커밋 전에 바뀐 Cask·Formula 를 brew style 로 검사한다(CI 의 Test 와 같은 검사).
+# 설정: git config core.hooksPath .githooks
+files=$(git diff --cached --name-only --diff-filter=ACM -- 'Casks/*.rb' 'Formula/*.rb')
+[ -z "$files" ] && exit 0
+if ! command -v brew >/dev/null 2>&1; then
+  echo "pre-commit: brew 가 없어 style 검사를 건너뜀" >&2
+  exit 0
+fi
+# shellcheck disable=SC2086
+brew style $files || {
+  echo "pre-commit: brew style 실패. 고친 뒤 다시 커밋하세요(급하면 --no-verify)." >&2
+  exit 1
+}
