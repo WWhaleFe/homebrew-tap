@@ -1,6 +1,6 @@
 cask "mdemo" do
-  version "0.15.0"
-  sha256 "205513798184c494549acf519fda3cce7087e10481c4560a23b5f6868c1427e2"
+  version "0.15.1"
+  sha256 "e64936e2c6ab132e9b6ba29ce1033e695801dfa57f1ec41d5ede23790abd9e5c"
 
   url "https://github.com/WWhaleFe/MDemo/releases/download/v#{version}/MDemo-v#{version}.zip"
   name "MDemo"
