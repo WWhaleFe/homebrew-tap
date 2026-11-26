@@ -4,7 +4,7 @@ cask "flockswitch" do
 
   url "https://github.com/WWhaleFe/flockswitch-mac/releases/download/v#{version}/flockswitch-macos-arm64-#{version}.zip"
   name "flockswitch"
-  desc "Move a Logitech mouse and keyboard to another computer with one button"
+  desc "Share a mouse and keyboard between computers over the network, with Logitech Easy-Switch"
   homepage "https://github.com/WWhaleFe/flockswitch-mac"
 
   livecheck do
