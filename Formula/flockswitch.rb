@@ -1,5 +1,5 @@
 class Flockswitch < Formula
-  desc "Move a Logitech mouse and keyboard to another computer with one button"
+  desc "Share mouse and keyboard across computers, with Logitech Easy-Switch"
   homepage "https://github.com/WWhaleFe/flockswitch-linux"
   license "MIT"
 
@@ -13,12 +13,12 @@ class Flockswitch < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v0.15.0/flockswitch-linux-x86_64-0.15.0.tar.gz"
-      sha256 "7cab99183700b68665b05c0b39770a3410c9c38c6b9bfcfb4faa88968e154d8b"
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.0.0/flockswitch-linux-x86_64-2.0.0.tar.gz"
+      sha256 "ae7eeffcfeed283556ce2c3355054eb297b90563d9ccc37a586448f9404fad96"
     end
     on_arm do
-      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v0.15.0/flockswitch-linux-aarch64-0.15.0.tar.gz"
-      sha256 "ad51b17412538435a03a4d3a5daa492d57b526c707403ecb0712281dc8423f7c"
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.0.0/flockswitch-linux-aarch64-2.0.0.tar.gz"
+      sha256 "89d16efdece1e56ca0b467e4c1b78e5faf8dfb644daa7841cdc6b7ba5d6690c0"
     end
   end
 
