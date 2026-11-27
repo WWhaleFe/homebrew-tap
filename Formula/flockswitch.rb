@@ -13,18 +13,20 @@ class Flockswitch < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.1.1/flockswitch-linux-x86_64-2.1.1.tar.gz"
-      sha256 "6deddd2801762ed34fb6236a06e78c8bfd1e91265b874d624866bdeb5e5e3dee"
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.2.0/flockswitch-linux-x86_64-2.2.0.tar.gz"
+      sha256 "521227e97bcc377596ea56e5f64e7f6ee0a173528377e6d86c23e32cfddc0676"
     end
     on_arm do
-      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.1.1/flockswitch-linux-aarch64-2.1.1.tar.gz"
-      sha256 "0e14f7ac2f222020cb45004cf11449ed5372b3e1202bed4f78d7561069b601f4"
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.2.0/flockswitch-linux-aarch64-2.2.0.tar.gz"
+      sha256 "c546430024ea6d0f49e1564aa05fdcde2afc3265a0380f658fd60c49253ad947"
     end
   end
 
   def install
     bin.install "flockswitch"
     (share/"flockswitch").install "flockswitch.png", "70-flockswitch.rules"
+    # GNOME helper extension; `flockswitch setup` copies it into the user's extensions.
+    (share/"flockswitch").install "gnome-extension"
     # opt paths stay the same across upgrades.
     inreplace "flockswitch.desktop" do |s|
       s.gsub! "@BIN@", opt_bin/"flockswitch"
@@ -40,6 +42,8 @@ class Flockswitch < Formula
       everything, asks once, and needs your password once:
         flockswitch setup
       Then start flockswitch from the app menu (replug the receiver if it was plugged in).
+      On GNOME Wayland, setup also installs the flockswitch GNOME helper extension, so the
+      system stops asking for input capture and remote control; log out and in once after it.
       `flockswitch setup --dry-run` prints the commands if you prefer to run them yourself.
 
       To upgrade (the macOS cask has the same name, so name the formula):
