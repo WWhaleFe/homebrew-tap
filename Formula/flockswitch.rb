@@ -13,12 +13,12 @@ class Flockswitch < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.1.0/flockswitch-linux-x86_64-2.1.0.tar.gz"
-      sha256 "5afa95dd129390e1c84b51b46e492b43964a753b8d22b933e3fde16067fd8d98"
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.1.1/flockswitch-linux-x86_64-2.1.1.tar.gz"
+      sha256 "6deddd2801762ed34fb6236a06e78c8bfd1e91265b874d624866bdeb5e5e3dee"
     end
     on_arm do
-      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.1.0/flockswitch-linux-aarch64-2.1.0.tar.gz"
-      sha256 "f89b58a6ec5f30cdc0f84de6d2f7e825137a65337bfcac37b1e1d714f4ad1d57"
+      url "https://github.com/WWhaleFe/flockswitch-linux/releases/download/v2.1.1/flockswitch-linux-aarch64-2.1.1.tar.gz"
+      sha256 "0e14f7ac2f222020cb45004cf11449ed5372b3e1202bed4f78d7561069b601f4"
     end
   end
 
